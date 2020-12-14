@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman&display=swap');
+// $color: #926def, #8c6ced, #876beb, #6565dd, #5f64db;
+$color: #49b8e5, #1e98d4, #2a92d0, #3a88c8, #507cbe;
+
+#root {
+  height: 100vh;
+}
+
+body {
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+$circle-size: 20px;
+$circle-margin: 7px;
+
+.circle {
+  width: $circle-size;
+  height: $circle-size;
+  border-radius: 50%;
+  margin: $circle-margin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:before {
+    content: "";
+    width: $circle-size;
+    height: $circle-size;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: scale 2s infinite
+    cubic-bezier(0, 0, 0.49, 1.02);
+  }
+}
+
+@for $i from 1 through 5 {
+  .circle-#{$i} {
+    background-color: nth($color, $i);
+    &:before {
+      background-color: nth($color, $i);
+      animation-delay: 200ms * $i;
+    }
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50%, 75% {
+    transform: scale(2.5);
+  }
+  78%, 100% {
+    opacity: 0;
+  }
+}
+
+.weather-info {
+  margin-top: 150px;
+  font-family: 'Goldman', sans-serif;
+  h1 {
+    text-align: center;
+  }
+  .cards-container {
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.weather-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .weather-card__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p {
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+.cards-container {
+  font-family: 'Goldman', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 150px auto;
+  a {
+    text-decoration: none;
+    transition: .2s ease background-color;
+    .weather-card {
+      width: 100px;
+      margin: 10px;
+      h3, p, span {
+        color: rgba(21,50,52,0.8);
+        text-align: center;
+      }
+    }
+    &:hover {
+      border: 1px solid rgba(112,105,112,0.4);
+      background-color: rgba(112,105,112,0.2);
+    }
+  }
+
+}
